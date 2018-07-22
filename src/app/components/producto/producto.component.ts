@@ -15,19 +15,15 @@ export class ProductoComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
+    console.log(this.producto);
   }
 
   get diagnostic() { return JSON.stringify(this.producto); }
 
 
   constructor() {
-    this.producto.nombre = 'Pista de carreras Cars';
-    this.producto.precioDeCompra = 59900;
-    this.producto.fechaDeCompra = new Date();
-
-    console.log(this.producto);
+    
    }
-
 
   ngOnInit() {
   }

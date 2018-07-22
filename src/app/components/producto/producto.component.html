@@ -1,30 +1,49 @@
 <div class="container">
-  <h1>Producto</h1>
-  <form #productoForm="ngForm">    
-   <div class="form-group">
-     <label for="nombre">Nombre</label>
-     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required
-     [(ngModel)]="producto.nombre" >
-     <div [hidden]=" nombre.pristine"
-     class="alert alert-danger">
-      El nombre es requerido
-      </div>        
-   </div>
-  
-   <div class="form-group">
-     <label for="categoria">Categoria</label>
-       <select class="form-control" name="categoria" id="categoria">
-         <option *ngFor="let categ of categorias" [value]="categ">{{categ}}</option>
-       </select>
-    </div>
-
-  <div class="form-group">
-    <label for="precioDeCompra">Precio de Compra</label>
-    <input type="number" name="precioDeCompra" id="precioDeCompra" class="form-control" placeholder="0.0" aria-describedby="helpId"
-    [(ngModel)]="producto.precioDeCompra" required>
-    <small id="helpId" class="text-muted">Valor unitario del producto comprado</small>
+  <h1>Producto</h1>  
+  <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+   
+  <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required
+        [(ngModel)]="producto.nombre" name="nombre" #nombre="ngModel">
+          <div [hidden]="nombre.valid || nombre.pristine"
+        class="alert alert-danger">
+          El nombre es requerido
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="fechaDeCompra">Fecha de Compra</label>
+          <input type="date" name="fechaDeCompra" id="fechaDeCompra" class="form-control"
+          [(ngModel)]="producto.fechaDeCompra" required>
+        </div>
+     </div>
+    <div class="col-sm">
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+              <select class="form-control" name="categoria" id="categoria">
+                <option *ngFor="let categ of categorias" [value]="categ">{{categ}}</option>
+              </select>
+           </div>
+           <div class="form-group">
+              <label for="fechaPublicacion">Fecha de Publicaci&oacute;n</label>
+              <input type="date" name="fechaPublicacion" id="fechaPublicacion" class="form-control"
+              [(ngModel)]="producto.fechaPublicacion" required>
+            </div>
+         </div> 
+  <div class="col-sm">
+    <div class="form-group">
+        <label for="precioDeCompra">Precio de Compra</label>
+        <input type="number" name="precioDeCompra" id="precioDeCompra" class="form-control" placeholder="0.0" 
+        [(ngModel)]="producto.precioDeCompra" required>   
+      </div>
+      <div class="form-group">
+          <label for="precioVenta">Precio de Venta</label>
+          <input type="number" name="precioVenta" id="precioVenta" class="form-control" placeholder="0.0" 
+          [(ngModel)]="producto.precioVenta" required>   
+      </div>
   </div>
-
-  <button type="submit" class="btn btn-success">Grabar</button>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!productoForm.form.valid">Grabar</button>
   </form>
-</div>
